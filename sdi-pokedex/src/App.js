@@ -6,6 +6,8 @@ import PokemonInfo from './PokemonInfo.js'
 import Navbar from './Navbar';
 
 
+
+
 function App() {
   
   return (

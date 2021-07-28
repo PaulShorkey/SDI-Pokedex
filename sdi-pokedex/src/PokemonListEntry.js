@@ -1,5 +1,8 @@
 import {useState, useEffect, useContext} from 'react'
-import {AppContext} from './App'
+// import {AppContext} from './App'
+import { useHistory } from 'react-router-dom'
+import {Link} from 'react-router-dom'
+
 
 const PokemonListEntry = ({ name } ) => {
   const [pokemonPic, setPokemonPic] = useState([])
@@ -10,8 +13,8 @@ const PokemonListEntry = ({ name } ) => {
     .then(data => setPokemonPic(data.sprites.front_default))
   }, [])
 
-  const context = useContext(AppContext);
-  console.log(context)
+  // const context = useContext(AppContext);
+  // console.log(context)
   
   
   
@@ -19,7 +22,7 @@ const PokemonListEntry = ({ name } ) => {
   return (
      <div className='pokemonListEntry'>
          <div>{name}</div>
-         <img src={pokemonPic} />
+           <Link to="/PokemonInfo"><img src={pokemonPic}/></Link>
      </div>
   )
 }

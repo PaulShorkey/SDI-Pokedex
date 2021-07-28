@@ -1,52 +1,57 @@
 import './App.css';
-import {useState, useContext, createContext} from 'react'
+// import {useState, useContext, createContext} from 'react'
 import PokemonList from './PokemonList.js'
-// import {AppContext} from './AppContext.js'
+import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import PokemonInfo from './PokemonInfo.js'
+import Navbar from './Navbar';
+
 
 function App() {
   
-
-  const homeState = () => {
-    return (
-        <div>
-          <PokemonList/>
-        </div>
-    )
-  }
-
-  const [appState, setAppState] = useState(homeState())
-  
-  const homeOnClickHandler = () =>{
-    return (
-      setAppState(homeState())
-    )
-  }
-
-  console.log("the code is working")
-  const AppContext = createContext(setAppState)
-  console.log("this is app context", AppContext)
-
-
-  
-  
   return (
-    <div className="App">
-      <header className="App-header">
-        <nav className="navbar">
-          <div className = "col-md-6 offset-md-3">
-            <button onClick={() => {homeOnClickHandler()}}>Home</button>
-          </div>
-        </nav>
-      </header>
-      {appState}
-      <AppContext.Provider value={{appState, setAppState}}>
-       <PokemonList/>
-      </AppContext.Provider>
-    </div>
-    
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <Navbar/>
+        </header>
+        
+        <div className = "content">
+          <Switch>
+            <Route exact path="/" component={PokemonList} />
+            <Route exact path="/PokemonInfo" component={PokemonInfo} />
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 
-export {AppContext};
 
 export default App;
+
+
+/*
+return (
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          <nav className="navbar">
+            <div className = "col-md-6 offset-md-3">
+              <button /*onClick={() => {homeOnClickHandler()}}>Home</button>
+              </div>
+              </nav>
+            </header>
+            <Route exact path="/">
+              <PokemonList/>
+              {/* <AppContext.Provider value={{appState, setAppState}}>
+              <PokemonList/>
+              </AppContext.Provider> }
+            </Route>
+            <Route path='/pokemonInfo' >
+              
+            </Route>
+          </div>
+    
+        </Router>
+      );
+      */
